@@ -73,41 +73,37 @@ export default function CheckInPage() {
         <Logo variant="combined" />
       </motion.div>
 
-      {/* Main Content - Calculated spacing */}
-      <div className="px-10 pt-6 pb-4">
+      {/* Main Content - Tab 3 inspired design */}
+      <div className="flex-1 flex flex-col justify-center px-8 pb-12">
         <motion.div
-          className="w-full max-w-xl mx-auto"
+          className="w-full max-w-2xl mx-auto"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.4 }}
         >
-          {/* Form Card */}
-          <div className="bg-white rounded-2xl border border-neutral-200 shadow-sm p-8">
-            {/* Title */}
-            <div className="text-center mb-7">
-              <h2 className="font-display text-[2rem] font-semibold text-black mb-1 tracking-tight">
-                Enter Your Information
-              </h2>
-              <p className="font-sans text-base text-neutral-500 font-medium">
-                We'll send you a tracking link via SMS
-              </p>
-            </div>
+          {/* Title - Tab 3 sizing */}
+          <h1 className="text-4xl sm:text-5xl font-semibold mb-10 tracking-tight text-center">
+            Enter Your Information
+          </h1>
+          <p className="text-lg sm:text-xl text-center text-neutral-500 mb-8">
+            We'll send you a tracking link via SMS
+          </p>
 
+          {/* Form Card - Tab 3 style */}
+          <div className="bg-white rounded-3xl p-8 sm:p-10 mb-8 shadow-xl border border-neutral-200">
             {/* Form */}
-            <div className="space-y-5">
+            <div className="mb-8">
               <CheckInForm onSubmit={handleSubmit} />
             </div>
 
-            {/* Info Box */}
-            <div className="mt-7 pt-5 border-t border-neutral-200">
-              <div className="flex gap-2 text-neutral-600">
-                <svg className="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="font-sans text-sm leading-relaxed">
-                  You'll receive a text with a link to track your position and complete your intake form. Feel free to step out while you wait!
-                </p>
-              </div>
+            {/* Info Box - Tab 3 style */}
+            <div className="bg-neutral-50 rounded-2xl p-6 sm:p-8 border border-neutral-200">
+              <p className="text-lg sm:text-xl text-center">
+                ✓ You'll receive a text with a link to track your position and complete your intake form
+              </p>
+              <p className="text-base sm:text-lg text-neutral-500 text-center mt-2">
+                Feel free to step out while you wait!
+              </p>
             </div>
           </div>
         </motion.div>

@@ -63,10 +63,10 @@ export function CheckInForm({ onSubmit }: CheckInFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-5">
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
       {/* Full Name */}
-      <div className="space-y-2">
-        <Label htmlFor="fullName" className="font-sans text-base font-semibold text-neutral-700">
+      <div className="space-y-3">
+        <Label htmlFor="fullName" className="text-lg font-semibold text-neutral-700">
           Full Name *
         </Label>
         <Input
@@ -75,18 +75,18 @@ export function CheckInForm({ onSubmit }: CheckInFormProps) {
           placeholder="Alex Gordon"
           disabled={isSubmitting}
           aria-invalid={errors.fullName ? 'true' : 'false'}
-          className="font-sans h-12 text-base px-4 rounded-lg border-neutral-300 focus:border-black focus:ring-0 bg-white"
+          className="h-14 text-lg px-5 rounded-xl border-neutral-300 focus:border-black focus:ring-0 bg-white"
         />
         {errors.fullName && (
-          <p className="font-sans text-xs text-red-600 mt-1" role="alert">
+          <p className="text-sm text-red-600 mt-1" role="alert">
             {errors.fullName.message}
           </p>
         )}
       </div>
 
       {/* Phone Number */}
-      <div className="space-y-2">
-        <Label htmlFor="phoneNumber" className="font-sans text-base font-semibold text-neutral-700">
+      <div className="space-y-3">
+        <Label htmlFor="phoneNumber" className="text-lg font-semibold text-neutral-700">
           Phone Number *
         </Label>
         <Input
@@ -97,24 +97,24 @@ export function CheckInForm({ onSubmit }: CheckInFormProps) {
           placeholder="(519) 555-0123"
           disabled={isSubmitting}
           aria-invalid={errors.phoneNumber ? 'true' : 'false'}
-          className="font-mono h-12 text-base px-4 rounded-lg border-neutral-300 focus:border-black focus:ring-0 bg-white tracking-wide"
+          className="h-14 text-lg px-5 rounded-xl border-neutral-300 focus:border-black focus:ring-0 bg-white tabular-nums"
         />
         {errors.phoneNumber && (
-          <p className="font-sans text-xs text-red-600 mt-1" role="alert">
+          <p className="text-sm text-red-600 mt-1" role="alert">
             {errors.phoneNumber.message}
           </p>
         )}
       </div>
 
-      {/* Submit Button */}
+      {/* Submit Button - Tab 3 size */}
       <Button
         type="submit"
-        className="font-display w-full h-12 text-base font-semibold rounded-lg bg-black hover:bg-neutral-800 text-white mt-6 shadow-sm hover:shadow-md transition-all hover:scale-[1.01]"
+        className="w-full h-16 sm:h-20 text-xl sm:text-2xl font-semibold rounded-2xl bg-black hover:bg-neutral-800 text-white mt-8 shadow-lg hover:shadow-xl transition-all"
         disabled={isSubmitting}
       >
         {isSubmitting ? (
           <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            <Loader2 className="mr-2 h-6 w-6 animate-spin" />
             Joining Queue...
           </>
         ) : (

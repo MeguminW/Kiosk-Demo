@@ -31,8 +31,11 @@ export async function POST(request: NextRequest) {
     const firstName = fullName.split(' ')[0]
     const trackingUrl = `${PATIENT_WEB_URL}?q=${queueNumber}`
 
+    console.log('📱 Attempting to send SMS to:', phoneNumber)
+    console.log('📍 Tracking URL:', trackingUrl)
+
     sendSMS(phoneNumber, firstName, trackingUrl).catch((err) => {
-      console.error('SMS failed:', err)
+      console.error('❌ SMS failed:', err)
       // Log error but don't fail the check-in
     })
 
@@ -65,11 +68,15 @@ async function sendSMS(
   const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID
 
   if (!accountSid || !authToken || !messagingServiceSid) {
-    console.warn('Twilio credentials not configured, skipping SMS')
+    console.warn('⚠️ Twilio credentials not configured, skipping SMS')
+    console.log('TWILIO_ACCOUNT_SID:', accountSid ? 'SET' : 'MISSING')
+    console.log('TWILIO_AUTH_TOKEN:', authToken ? 'SET' : 'MISSING')
+    console.log('TWILIO_MESSAGING_SERVICE_SID:', messagingServiceSid ? 'SET' : 'MISSING')
     return
   }
 
   const message = SMS_TEMPLATES.checkIn(firstName, trackingUrl)
+  console.log('📧 SMS Message:', message)
 
   const response = await fetch(
     `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`,
@@ -89,6 +96,11 @@ async function sendSMS(
 
   if (!response.ok) {
     const error = await response.text()
+    console.error('❌ Twilio API Response:', error)
     throw new Error(`Twilio API error: ${error}`)
   }
+
+  console.log('✅ SMS sent successfully!')
+  const result = await response.json()
+  console.log('📱 Twilio Response:', result)
 }
