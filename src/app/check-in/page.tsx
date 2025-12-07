@@ -39,47 +39,64 @@ export default function CheckInPage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col bg-white">
-      {/* Logo stick to top + Back button */}
-      <div className="flex items-start justify-between pt-10 px-10">
-        <Button
-          variant="ghost"
-          onClick={handleBack}
-          className="text-xl h-12 px-4 hover:bg-neutral-100 -ml-4"
-        >
-          ← Back
-        </Button>
-        <div className="flex-1 flex justify-center -ml-20">
+    <main className="min-h-screen bg-white flex flex-col">
+      {/* Header with Logo and Back */}
+      <div className="pt-12 pb-10 px-10">
+        <div className="flex items-center justify-center relative">
+          {/* Back Button - absolute left */}
+          <Button
+            variant="ghost"
+            onClick={handleBack}
+            className="absolute left-0 text-xl h-12 px-4 hover:bg-neutral-100 font-medium"
+          >
+            ← Back
+          </Button>
+
+          {/* Logo - perfectly centered */}
           <Logo variant="combined" />
         </div>
-        <div className="w-20"></div>
       </div>
 
-      {/* Main Content - centered, clean */}
-      <div className="flex-1 flex flex-col items-center justify-center px-12">
+      {/* Main Content */}
+      <div className="flex-1 flex items-center justify-center px-8 pb-20">
         <div className="w-full max-w-3xl">
-          <Card className="p-12 shadow-xl rounded-3xl border border-neutral-200">
-            {/* Title */}
-            <h2 className="text-4xl font-semibold text-center mb-3">
-              Enter Your Information
-            </h2>
-            <p className="text-xl text-neutral-500 text-center mb-10">
-              We'll send you a tracking link via SMS
-            </p>
+
+          {/* Form Card - Premium Design */}
+          <div className="bg-white rounded-[32px] border-2 border-neutral-100 p-14 shadow-2xl">
+
+            {/* Title Section */}
+            <div className="text-center space-y-3 mb-12">
+              <h2 className="text-5xl font-bold text-black tracking-tight">
+                Enter Your Information
+              </h2>
+              <p className="text-xl text-neutral-500 font-light">
+                We'll send you a tracking link via SMS
+              </p>
+            </div>
 
             {/* Form */}
-            <CheckInForm onSubmit={handleSubmit} />
+            <div className="space-y-8">
+              <CheckInForm onSubmit={handleSubmit} />
+            </div>
 
-            {/* Info */}
-            <div className="mt-10 pt-8 border-t border-neutral-200">
-              <div className="flex items-start gap-3">
-                <span className="text-2xl">💬</span>
-                <p className="text-lg text-neutral-600 leading-relaxed">
-                  You'll receive a text message with a link to track your queue position in real-time. Feel free to step out while you wait!
-                </p>
+            {/* Info Section */}
+            <div className="mt-12 pt-10 border-t-2 border-neutral-100">
+              <div className="bg-neutral-50 rounded-2xl p-6">
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <svg className="w-6 h-6 text-neutral-600 mt-1" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                  </div>
+                  <p className="text-lg text-neutral-700 leading-relaxed">
+                    You'll receive a text message with a link to track your queue position in real-time. Feel free to step out while you wait!
+                  </p>
+                </div>
               </div>
             </div>
-          </Card>
+
+          </div>
+
         </div>
       </div>
     </main>

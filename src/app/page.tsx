@@ -48,63 +48,73 @@ export default function WelcomePage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col bg-white">
-      {/* Logo stick to top - no gap below */}
-      <div className="flex justify-center pt-10">
+    <main className="min-h-screen bg-white flex flex-col">
+      {/* Logo - stick to top */}
+      <div className="pt-12 pb-10 flex justify-center">
         <Logo variant="combined" />
       </div>
 
-      {/* Main Content - centered, clean flow */}
-      <div className="flex-1 flex flex-col items-center justify-center px-12">
-        {/* Headline */}
-        <h1 className="text-5xl font-semibold text-center max-w-4xl leading-tight mb-3">
-          Welcome to {CLINIC_INFO.name}
-        </h1>
+      {/* Main Content Area */}
+      <div className="flex-1 flex items-center justify-center px-8 pb-20">
+        <div className="w-full max-w-4xl space-y-10">
 
-        {/* Subtitle */}
-        <p className="text-2xl text-neutral-500 text-center mb-12">
-          Check in to join the queue
-        </p>
+          {/* Welcome Message */}
+          <div className="text-center space-y-4">
+            <h1 className="text-6xl font-bold tracking-tight text-black">
+              Welcome to<br />
+              {CLINIC_INFO.name}
+            </h1>
+            <p className="text-2xl text-neutral-600 font-light">
+              Check in to join the queue
+            </p>
+          </div>
 
-        {/* Wait Time Card - clean, prominent */}
-        {!isLoading && (
-          <div className="w-full max-w-3xl mb-12">
-            <div className="bg-white rounded-3xl border border-neutral-200 shadow-xl p-12">
-              {/* Header row */}
-              <div className="flex items-center justify-between mb-10">
-                <p className="text-2xl font-semibold text-neutral-700">Current Wait Time</p>
-                <span className="px-5 py-2 bg-neutral-100 text-neutral-700 text-lg font-medium rounded-full">
+          {/* Wait Time Display - Premium Design */}
+          {!isLoading && (
+            <div className="bg-neutral-50 rounded-[32px] p-10 space-y-8">
+              {/* Status Badge */}
+              <div className="flex items-center justify-center">
+                <span className="inline-flex items-center gap-2 px-6 py-2.5 bg-white rounded-full text-neutral-700 font-medium text-lg shadow-sm">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <circle cx="10" cy="10" r="8" className="text-yellow-400" />
+                  </svg>
                   Moderate Wait
                 </span>
               </div>
 
-              {/* Wait time - hero */}
-              <div className="flex items-center mb-10">
-                <svg className="w-16 h-16 text-neutral-400 mr-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="text-8xl font-bold">~{queueStatus.waitTime} min</p>
+              {/* Wait Time */}
+              <div className="text-center space-y-2">
+                <div className="text-neutral-500 text-xl font-medium tracking-wide uppercase">
+                  Current Wait Time
+                </div>
+                <div className="text-8xl font-bold text-black tabular-nums tracking-tight">
+                  ~{queueStatus.waitTime}<span className="text-6xl text-neutral-400 font-light ml-2">min</span>
+                </div>
               </div>
 
-              {/* Patients ahead */}
-              <div className="flex items-center text-neutral-600">
-                <svg className="w-10 h-10 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              {/* Patients Ahead */}
+              <div className="flex items-center justify-center gap-3 text-neutral-600">
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
-                <p className="text-3xl font-semibold">{queueStatus.queueLength} patients ahead</p>
+                <span className="text-2xl font-medium">
+                  {queueStatus.queueLength} patients ahead
+                </span>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* CTA Button */}
-        <Button
-          size="lg"
-          onClick={handleCheckIn}
-          className="h-20 px-32 text-2xl font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all"
-        >
-          Check In
-        </Button>
+          {/* Check In Button - Premium */}
+          <div className="flex justify-center pt-4">
+            <Button
+              onClick={handleCheckIn}
+              className="bg-black hover:bg-neutral-800 text-white h-[72px] px-20 text-2xl font-medium rounded-[20px] shadow-xl hover:shadow-2xl transition-all duration-200 hover:scale-[1.02]"
+            >
+              Check In
+            </Button>
+          </div>
+
+        </div>
       </div>
 
       {/* Footer */}
