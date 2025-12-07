@@ -2,6 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { checkInSchema } from '@/lib/validations'
 import { PATIENT_WEB_URL, SMS_TEMPLATES } from '@/lib/constants'
 
+type TwilioConfig = {
+  accountSid: string
+  authToken: string
+  messagingServiceSid: string
+}
+
 // Force dynamic rendering for API route
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -38,7 +44,16 @@ export async function POST(request: NextRequest) {
     console.log('📱 Attempting to send SMS to:', phoneNumber)
     console.log('📍 Tracking URL:', trackingUrl)
 
-    sendSMS(phoneNumber, firstName, trackingUrl).catch((err) => {
+    const twilioConfig = getTwilioConfig()
+    if (!twilioConfig.ok) {
+      console.error('❌ Twilio config error:', twilioConfig.message)
+      return NextResponse.json(
+        { error: twilioConfig.message },
+        { status: 500 }
+      )
+    }
+
+    sendSMS(phoneNumber, firstName, trackingUrl, twilioConfig.config).catch((err) => {
       console.error('❌ SMS failed:', err)
       // Log error but don't fail the check-in
     })
@@ -65,19 +80,10 @@ export async function POST(request: NextRequest) {
 async function sendSMS(
   phoneNumber: string,
   firstName: string,
-  trackingUrl: string
+  trackingUrl: string,
+  config: TwilioConfig
 ): Promise<void> {
-  const accountSid = process.env.TWILIO_ACCOUNT_SID
-  const authToken = process.env.TWILIO_AUTH_TOKEN
-  const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID
-
-  if (!accountSid || !authToken || !messagingServiceSid) {
-    console.warn('⚠️ Twilio credentials not configured, skipping SMS')
-    console.log('TWILIO_ACCOUNT_SID:', accountSid ? 'SET' : 'MISSING')
-    console.log('TWILIO_AUTH_TOKEN:', authToken ? 'SET' : 'MISSING')
-    console.log('TWILIO_MESSAGING_SERVICE_SID:', messagingServiceSid ? 'SET' : 'MISSING')
-    return
-  }
+  const { accountSid, authToken, messagingServiceSid } = config
 
   const message = SMS_TEMPLATES.checkIn(firstName, trackingUrl)
   console.log('📧 SMS Message:', message)
@@ -107,4 +113,31 @@ async function sendSMS(
   console.log('✅ SMS sent successfully!')
   const result = await response.json()
   console.log('📱 Twilio Response:', result)
+}
+
+function getTwilioConfig():
+  | { ok: true; config: TwilioConfig }
+  | { ok: false; message: string } {
+  const accountSid = process.env.TWILIO_ACCOUNT_SID
+  const authToken = process.env.TWILIO_AUTH_TOKEN
+  const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID
+
+  const missing = [
+    accountSid ? null : 'TWILIO_ACCOUNT_SID',
+    authToken ? null : 'TWILIO_AUTH_TOKEN',
+    messagingServiceSid ? null : 'TWILIO_MESSAGING_SERVICE_SID',
+  ].filter(Boolean) as string[]
+
+  if (missing.length) {
+    console.warn('⚠️ Twilio credentials not configured, skipping SMS', missing)
+    return {
+      ok: false,
+      message: `Missing Twilio env vars: ${missing.join(', ')}`,
+    }
+  }
+
+  return {
+    ok: true,
+    config: { accountSid, authToken, messagingServiceSid },
+  }
 }
