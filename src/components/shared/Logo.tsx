@@ -16,6 +16,7 @@ export function Logo({ variant = 'combined', className }: LogoProps) {
           width={80}
           height={80}
           priority
+          unoptimized
           className="select-none"
         />
       </div>
@@ -31,6 +32,7 @@ export function Logo({ variant = 'combined', className }: LogoProps) {
           width={200}
           height={60}
           priority
+          unoptimized
           className="select-none"
         />
       </div>
@@ -43,9 +45,10 @@ export function Logo({ variant = 'combined', className }: LogoProps) {
       <Image
         src="/fountain-combined.png"
         alt="Fountain Health Technologies"
-        width={400}
-        height={120}
+        width={350}
+        height={105}
         priority
+        unoptimized
         className="select-none"
       />
     </div>

@@ -50,25 +50,25 @@ export default function WelcomePage() {
   return (
     <main className="flex min-h-screen flex-col bg-white">
       {/* Main Content - Centered with proper spacing */}
-      <div className="flex-1 flex flex-col items-center justify-center px-12 py-16 space-y-10">
-        {/* Logo */}
-        <div className="mb-6">
+      <div className="flex-1 flex flex-col items-center justify-center px-8 sm:px-12 py-12">
+        {/* Logo - Top spacing */}
+        <div className="mb-8">
           <Logo variant="combined" />
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-5xl font-semibold tracking-tight text-center max-w-4xl leading-tight">
+        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-center max-w-4xl leading-tight mb-4">
           Welcome to {CLINIC_INFO.name}
         </h1>
 
         {/* Subheadline */}
-        <p className="text-2xl text-neutral-500 text-center">
+        <p className="text-xl sm:text-2xl text-neutral-500 text-center mb-12">
           Check in to join the queue
         </p>
 
         {/* Wait Time Card */}
         {!isLoading && (
-          <div className="my-4">
+          <div className="mb-10">
             <WaitTimeIndicator
               waitMinutes={queueStatus.waitTime}
               queueLength={queueStatus.queueLength}
@@ -81,7 +81,7 @@ export default function WelcomePage() {
         <Button
           size="lg"
           onClick={handleCheckIn}
-          className="h-20 px-16 text-2xl font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all mt-6"
+          className="h-20 px-20 text-2xl font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all"
         >
           Check In
         </Button>
