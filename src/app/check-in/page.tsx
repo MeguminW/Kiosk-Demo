@@ -40,8 +40,8 @@ export default function CheckInPage() {
 
   return (
     <main className="flex min-h-screen flex-col bg-white">
-      {/* Header Area */}
-      <div className="relative flex items-center px-10 py-6 border-b border-neutral-200">
+      {/* Compact Header */}
+      <div className="relative flex items-center px-10 py-5 border-b border-neutral-200">
         {/* Back Button */}
         <Button
           variant="ghost"
@@ -51,26 +51,26 @@ export default function CheckInPage() {
           ← Back
         </Button>
 
-        {/* Logo - Absolutely centered */}
+        {/* Logo - perfectly centered */}
         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <Logo variant="wordmark" />
         </div>
       </div>
 
-      {/* Form Container - Redesigned like Tab 3 */}
-      <div className="flex-1 flex items-center justify-center px-10 py-12">
-        <div className="w-full max-w-2xl">
+      {/* Form Container - tight, centered, no wasted space */}
+      <div className="flex-1 flex items-center justify-center px-10 py-8">
+        <div className="w-full max-w-3xl">
           <Card className="p-12 shadow-xl rounded-3xl border border-neutral-200">
             <h2 className="text-4xl font-semibold mb-2 text-center">Enter Your Information</h2>
-            <p className="text-lg text-neutral-500 text-center mb-10">
+            <p className="text-xl text-neutral-500 text-center mb-8">
               We'll send you a tracking link via SMS
             </p>
 
             <CheckInForm onSubmit={handleSubmit} />
 
-            {/* Info text at bottom */}
-            <div className="mt-8 pt-6 border-t border-neutral-200">
-              <p className="text-base text-neutral-500 text-center">
+            {/* Info section - prominent */}
+            <div className="mt-8 pt-8 border-t border-neutral-200">
+              <p className="text-lg text-neutral-600 text-center leading-relaxed">
                 💬 You'll receive a text message with a link to track your queue position in real-time. Feel free to step out while you wait!
               </p>
             </div>
