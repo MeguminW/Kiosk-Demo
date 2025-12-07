@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
 import { Logo } from '@/components/shared/Logo'
 import { CheckInForm } from '@/components/kiosk/CheckInForm'
 import { Button } from '@/components/ui/button'
@@ -39,9 +40,20 @@ export default function CheckInPage() {
   }
 
   return (
-    <main className="min-h-screen bg-white flex flex-col">
+    <motion.main
+      className="h-screen bg-white flex flex-col overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+    >
       {/* Header with Logo and Back */}
-      <div className="pt-12 pb-10 px-10">
+      <motion.div
+        className="pt-10 pb-6 px-10"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.1, duration: 0.4 }}
+      >
         <div className="flex items-center justify-center relative">
           {/* Back Button - absolute left */}
           <Button
@@ -55,11 +67,16 @@ export default function CheckInPage() {
           {/* Logo - perfectly centered */}
           <Logo variant="combined" />
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center px-8 pb-20">
-        <div className="w-full max-w-3xl">
+      <div className="flex-1 flex items-center justify-center px-8">
+        <motion.div
+          className="w-full max-w-3xl"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
+        >
 
           {/* Form Card - Premium Design */}
           <div className="bg-white rounded-[32px] border-2 border-neutral-100 p-14 shadow-2xl">
@@ -97,8 +114,15 @@ export default function CheckInPage() {
 
           </div>
 
-        </div>
+        </motion.div>
       </div>
-    </main>
+
+      {/* Footer */}
+      <div className="pb-6 text-center">
+        <p className="text-neutral-500 text-base">
+          Powered by Fountain Health Technologies Inc.
+        </p>
+      </div>
+    </motion.main>
   )
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
 import { Logo } from '@/components/shared/Logo'
 import { WaitTimeIndicator } from '@/components/kiosk/WaitTimeIndicator'
 import { KioskFooter } from '@/components/kiosk/KioskFooter'
@@ -48,19 +49,35 @@ export default function WelcomePage() {
   }
 
   return (
-    <main className="min-h-screen bg-white flex flex-col">
+    <motion.main
+      className="h-screen bg-white flex flex-col overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+    >
       {/* Logo - stick to top */}
-      <div className="pt-12 pb-10 flex justify-center">
+      <motion.div
+        className="pt-10 pb-6 flex justify-center"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.1, duration: 0.4 }}
+      >
         <Logo variant="combined" />
-      </div>
+      </motion.div>
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex items-center justify-center px-8 pb-20">
-        <div className="w-full max-w-4xl space-y-10">
+      {/* Main Content Area - no scroll */}
+      <div className="flex-1 flex items-center justify-center px-8">
+        <motion.div
+          className="w-full max-w-4xl space-y-8"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
+        >
 
           {/* Welcome Message */}
-          <div className="text-center space-y-4">
-            <h1 className="text-6xl font-bold tracking-tight text-black">
+          <div className="text-center space-y-3">
+            <h1 className="text-6xl font-bold tracking-tight text-black leading-tight">
               Welcome to<br />
               {CLINIC_INFO.name}
             </h1>
@@ -105,7 +122,7 @@ export default function WelcomePage() {
           )}
 
           {/* Check In Button - Premium */}
-          <div className="flex justify-center pt-4">
+          <div className="flex justify-center pt-2">
             <Button
               onClick={handleCheckIn}
               className="bg-black hover:bg-neutral-800 text-white h-[72px] px-20 text-2xl font-medium rounded-[20px] shadow-xl hover:shadow-2xl transition-all duration-200 hover:scale-[1.02]"
@@ -114,11 +131,15 @@ export default function WelcomePage() {
             </Button>
           </div>
 
-        </div>
+        </motion.div>
       </div>
 
       {/* Footer */}
-      <KioskFooter />
-    </main>
+      <div className="pb-6 text-center">
+        <p className="text-neutral-500 text-base">
+          Powered by Fountain Health Technologies Inc.
+        </p>
+      </div>
+    </motion.main>
   )
 }
