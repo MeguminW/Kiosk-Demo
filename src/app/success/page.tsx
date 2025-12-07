@@ -74,7 +74,7 @@ function SuccessContent() {
       {/* Countdown Timer */}
       <div className="mb-8">
         <CountdownTimer
-          seconds={10}
+          seconds={20}
           onComplete={handleReturnToWelcome}
           showProgress={true}
         />
