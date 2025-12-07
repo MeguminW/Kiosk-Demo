@@ -63,10 +63,10 @@ export function CheckInForm({ onSubmit }: CheckInFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-10">
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
       {/* Full Name */}
-      <div className="space-y-4">
-        <Label htmlFor="fullName" className="text-2xl font-medium">
+      <div className="space-y-2">
+        <Label htmlFor="fullName" className="text-lg font-semibold text-neutral-700">
           Full Name *
         </Label>
         <Input
@@ -75,18 +75,18 @@ export function CheckInForm({ onSubmit }: CheckInFormProps) {
           placeholder="Alex Gordon"
           disabled={isSubmitting}
           aria-invalid={errors.fullName ? 'true' : 'false'}
-          className="h-16 text-2xl px-6 rounded-xl border-2 focus:border-black focus:ring-0"
+          className="h-14 text-lg px-5 rounded-xl border-neutral-300 focus:border-black focus:ring-0 bg-white"
         />
         {errors.fullName && (
-          <p className="text-lg text-error" role="alert">
+          <p className="text-sm text-red-600 mt-1" role="alert">
             {errors.fullName.message}
           </p>
         )}
       </div>
 
       {/* Phone Number */}
-      <div className="space-y-4">
-        <Label htmlFor="phoneNumber" className="text-2xl font-medium">
+      <div className="space-y-2">
+        <Label htmlFor="phoneNumber" className="text-lg font-semibold text-neutral-700">
           Phone Number *
         </Label>
         <Input
@@ -97,10 +97,10 @@ export function CheckInForm({ onSubmit }: CheckInFormProps) {
           placeholder="(519) 555-0123"
           disabled={isSubmitting}
           aria-invalid={errors.phoneNumber ? 'true' : 'false'}
-          className="h-16 text-2xl px-6 rounded-xl border-2 focus:border-black focus:ring-0"
+          className="h-14 text-lg px-5 rounded-xl border-neutral-300 focus:border-black focus:ring-0 bg-white"
         />
         {errors.phoneNumber && (
-          <p className="text-lg text-error" role="alert">
+          <p className="text-sm text-red-600 mt-1" role="alert">
             {errors.phoneNumber.message}
           </p>
         )}
@@ -109,12 +109,12 @@ export function CheckInForm({ onSubmit }: CheckInFormProps) {
       {/* Submit Button */}
       <Button
         type="submit"
-        className="w-full h-20 text-2xl font-semibold rounded-2xl mt-12 shadow-lg hover:shadow-xl transition-all"
+        className="w-full h-14 text-lg font-semibold rounded-xl bg-black hover:bg-neutral-800 text-white mt-8 shadow-md hover:shadow-lg transition-all hover:scale-[1.01]"
         disabled={isSubmitting}
       >
         {isSubmitting ? (
           <>
-            <Loader2 className="mr-3 h-7 w-7 animate-spin" />
+            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
             Joining Queue...
           </>
         ) : (
