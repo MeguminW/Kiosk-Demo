@@ -138,6 +138,10 @@ function getTwilioConfig():
 
   return {
     ok: true,
-    config: { accountSid, authToken, messagingServiceSid },
+    config: {
+      accountSid: accountSid!,
+      authToken: authToken!,
+      messagingServiceSid: messagingServiceSid!
+    },
   }
 }
