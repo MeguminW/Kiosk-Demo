@@ -56,9 +56,9 @@ export default function WelcomePage() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
-      {/* Logo - stick to top with minimal padding */}
+      {/* Logo - absolute top positioning */}
       <motion.div
-        className="pt-8 pb-4 flex justify-center"
+        className="pt-6 pb-3 flex justify-center"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.1, duration: 0.4 }}
@@ -66,47 +66,47 @@ export default function WelcomePage() {
         <Logo variant="combined" />
       </motion.div>
 
-      {/* Main Content - Fixed spacing for perfect balance */}
-      <div className="flex-1 flex flex-col justify-center px-10 -mt-8">
+      {/* Main Content - Calculated spacing, no flex tricks */}
+      <div className="px-10 pt-6 pb-4">
         <motion.div
-          className="w-full max-w-2xl mx-auto space-y-6"
+          className="w-full max-w-2xl mx-auto space-y-5"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.4 }}
         >
-          {/* Welcome Message - Compact */}
-          <div className="text-center space-y-2">
-            <h1 className="text-5xl font-bold text-black">
+          {/* Welcome Message */}
+          <div className="text-center space-y-1">
+            <h1 className="font-display text-[2.75rem] font-semibold text-black tracking-tight">
               Welcome to
             </h1>
-            <h2 className="text-4xl font-bold text-black">
+            <h2 className="font-display text-[2.25rem] font-semibold text-black leading-tight tracking-tight">
               {CLINIC_INFO.name}
             </h2>
-            <p className="text-xl text-neutral-500 pt-1">
+            <p className="font-sans text-lg text-neutral-500 pt-2 font-medium">
               Check in to join the queue
             </p>
           </div>
 
-          {/* Wait Time Card - Compact and clean */}
+          {/* Wait Time Card */}
           {!isLoading && (
-            <div className="bg-neutral-50 rounded-3xl p-8 space-y-6">
-              {/* Wait Time - Main focus */}
+            <div className="bg-neutral-100 rounded-2xl p-7 space-y-5">
+              {/* Wait Time */}
               <div className="text-center">
-                <div className="text-neutral-400 text-sm font-semibold tracking-widest uppercase mb-3">
+                <div className="font-sans text-[0.6875rem] font-bold tracking-[0.15em] uppercase mb-2 text-neutral-500">
                   Current Wait Time
                 </div>
-                <div className="text-7xl font-bold text-black tabular-nums">
+                <div className="font-mono text-[4rem] font-bold text-black tabular-nums tracking-tight leading-none">
                   ~{queueStatus.waitTime}
-                  <span className="text-5xl text-neutral-400 font-normal ml-2">min</span>
+                  <span className="text-[2.5rem] text-neutral-400 font-medium ml-2">min</span>
                 </div>
               </div>
 
-              {/* Patients Ahead - Secondary info */}
-              <div className="flex items-center justify-center gap-2 text-neutral-600 border-t border-neutral-200 pt-5">
+              {/* Patients Ahead */}
+              <div className="flex items-center justify-center gap-2 text-neutral-600 border-t border-neutral-300 pt-4">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
-                <span className="text-lg font-medium">
+                <span className="font-sans text-base font-medium">
                   {queueStatus.queueLength} patients ahead
                 </span>
               </div>
@@ -114,10 +114,10 @@ export default function WelcomePage() {
           )}
 
           {/* Check In Button */}
-          <div className="flex justify-center pt-4">
+          <div className="flex justify-center pt-3">
             <Button
               onClick={handleCheckIn}
-              className="bg-black hover:bg-neutral-800 text-white h-16 px-16 text-xl font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02]"
+              className="font-display bg-black hover:bg-neutral-800 text-white h-14 px-14 text-lg font-semibold rounded-xl shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
             >
               Check In
             </Button>
@@ -125,9 +125,12 @@ export default function WelcomePage() {
         </motion.div>
       </div>
 
-      {/* Footer - Always visible */}
-      <div className="pb-5 text-center">
-        <p className="text-neutral-400 text-sm">
+      {/* Spacer to push footer down */}
+      <div className="flex-1" />
+
+      {/* Footer - Fixed at bottom */}
+      <div className="pb-4 text-center">
+        <p className="text-neutral-400 text-xs">
           Powered by Fountain Health Technologies Inc.
         </p>
       </div>

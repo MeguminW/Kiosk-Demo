@@ -47,63 +47,65 @@ export default function CheckInPage() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
-      {/* Header - Logo stick to top */}
+      {/* Back Button - Absolute top-left */}
       <motion.div
-        className="pt-8 pb-4"
+        className="absolute top-6 left-6 z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1, duration: 0.4 }}
+      >
+        <Button
+          variant="ghost"
+          onClick={handleBack}
+          className="text-base h-9 px-2 hover:bg-neutral-100 font-medium text-neutral-700"
+        >
+          ← Back
+        </Button>
+      </motion.div>
+
+      {/* Logo - Top center */}
+      <motion.div
+        className="pt-6 pb-3 flex justify-center"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.1, duration: 0.4 }}
       >
-        {/* Back Button - Top left corner */}
-        <div className="absolute top-8 left-8">
-          <Button
-            variant="ghost"
-            onClick={handleBack}
-            className="text-lg h-10 px-3 hover:bg-neutral-100 font-medium text-neutral-700"
-          >
-            ← Back
-          </Button>
-        </div>
-
-        {/* Logo - Centered */}
-        <div className="flex justify-center">
-          <Logo variant="combined" />
-        </div>
+        <Logo variant="combined" />
       </motion.div>
 
-      {/* Main Content - Form centered with proper spacing */}
-      <div className="flex-1 flex flex-col justify-center px-10 -mt-8">
+      {/* Main Content - Calculated spacing */}
+      <div className="px-10 pt-6 pb-4">
         <motion.div
           className="w-full max-w-xl mx-auto"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.4 }}
         >
-          {/* Form Card - Clean and minimal */}
-          <div className="bg-white rounded-3xl border border-neutral-200 shadow-lg p-10">
+          {/* Form Card */}
+          <div className="bg-white rounded-2xl border border-neutral-200 shadow-sm p-8">
             {/* Title */}
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-bold text-black mb-2">
+            <div className="text-center mb-7">
+              <h2 className="font-display text-[2rem] font-semibold text-black mb-1 tracking-tight">
                 Enter Your Information
               </h2>
-              <p className="text-lg text-neutral-500">
+              <p className="font-sans text-base text-neutral-500 font-medium">
                 We'll send you a tracking link via SMS
               </p>
             </div>
 
             {/* Form */}
-            <div className="space-y-6">
+            <div className="space-y-5">
               <CheckInForm onSubmit={handleSubmit} />
             </div>
 
             {/* Info Box */}
-            <div className="mt-8 pt-6 border-t border-neutral-200">
-              <div className="flex gap-3 text-neutral-600">
-                <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            <div className="mt-7 pt-5 border-t border-neutral-200">
+              <div className="flex gap-2 text-neutral-600">
+                <svg className="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <p className="text-base leading-relaxed">
-                  You'll receive a text with a link to track your queue position in real-time. Feel free to step out while you wait!
+                <p className="font-sans text-sm leading-relaxed">
+                  You'll receive a text with a link to track your position and complete your intake form. Feel free to step out while you wait!
                 </p>
               </div>
             </div>
@@ -111,9 +113,12 @@ export default function CheckInPage() {
         </motion.div>
       </div>
 
-      {/* Footer - Always visible */}
-      <div className="pb-5 text-center">
-        <p className="text-neutral-400 text-sm">
+      {/* Spacer to push footer down */}
+      <div className="flex-1" />
+
+      {/* Footer - Fixed at bottom */}
+      <div className="pb-4 text-center">
+        <p className="text-neutral-400 text-xs">
           Powered by Fountain Health Technologies Inc.
         </p>
       </div>

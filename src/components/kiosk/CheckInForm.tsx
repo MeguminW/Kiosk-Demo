@@ -63,10 +63,10 @@ export function CheckInForm({ onSubmit }: CheckInFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-5">
       {/* Full Name */}
       <div className="space-y-2">
-        <Label htmlFor="fullName" className="text-lg font-semibold text-neutral-700">
+        <Label htmlFor="fullName" className="font-sans text-base font-semibold text-neutral-700">
           Full Name *
         </Label>
         <Input
@@ -75,10 +75,10 @@ export function CheckInForm({ onSubmit }: CheckInFormProps) {
           placeholder="Alex Gordon"
           disabled={isSubmitting}
           aria-invalid={errors.fullName ? 'true' : 'false'}
-          className="h-14 text-lg px-5 rounded-xl border-neutral-300 focus:border-black focus:ring-0 bg-white"
+          className="font-sans h-12 text-base px-4 rounded-lg border-neutral-300 focus:border-black focus:ring-0 bg-white"
         />
         {errors.fullName && (
-          <p className="text-sm text-red-600 mt-1" role="alert">
+          <p className="font-sans text-xs text-red-600 mt-1" role="alert">
             {errors.fullName.message}
           </p>
         )}
@@ -86,7 +86,7 @@ export function CheckInForm({ onSubmit }: CheckInFormProps) {
 
       {/* Phone Number */}
       <div className="space-y-2">
-        <Label htmlFor="phoneNumber" className="text-lg font-semibold text-neutral-700">
+        <Label htmlFor="phoneNumber" className="font-sans text-base font-semibold text-neutral-700">
           Phone Number *
         </Label>
         <Input
@@ -97,10 +97,10 @@ export function CheckInForm({ onSubmit }: CheckInFormProps) {
           placeholder="(519) 555-0123"
           disabled={isSubmitting}
           aria-invalid={errors.phoneNumber ? 'true' : 'false'}
-          className="h-14 text-lg px-5 rounded-xl border-neutral-300 focus:border-black focus:ring-0 bg-white"
+          className="font-mono h-12 text-base px-4 rounded-lg border-neutral-300 focus:border-black focus:ring-0 bg-white tracking-wide"
         />
         {errors.phoneNumber && (
-          <p className="text-sm text-red-600 mt-1" role="alert">
+          <p className="font-sans text-xs text-red-600 mt-1" role="alert">
             {errors.phoneNumber.message}
           </p>
         )}
@@ -109,12 +109,12 @@ export function CheckInForm({ onSubmit }: CheckInFormProps) {
       {/* Submit Button */}
       <Button
         type="submit"
-        className="w-full h-14 text-lg font-semibold rounded-xl bg-black hover:bg-neutral-800 text-white mt-8 shadow-md hover:shadow-lg transition-all hover:scale-[1.01]"
+        className="font-display w-full h-12 text-base font-semibold rounded-lg bg-black hover:bg-neutral-800 text-white mt-6 shadow-sm hover:shadow-md transition-all hover:scale-[1.01]"
         disabled={isSubmitting}
       >
         {isSubmitting ? (
           <>
-            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Joining Queue...
           </>
         ) : (

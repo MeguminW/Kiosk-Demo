@@ -25,7 +25,9 @@ const config: Config = {
         info: '#3B82F6',
       },
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        sans: ['var(--font-inter)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        display: ['var(--font-outfit)', 'sans-serif'],
+        mono: ['var(--font-space-grotesk)', 'monospace'],
       },
       fontSize: {
         // Kiosk-specific sizing (1.5x larger)
