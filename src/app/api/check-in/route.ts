@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { checkInSchema } from '@/lib/validations'
 import { PATIENT_WEB_URL, SMS_TEMPLATES } from '@/lib/constants'
 
+// Force dynamic rendering for API route
+export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
+
 /**
  * POST /api/check-in
  * Process patient check-in and send SMS
