@@ -22,4 +22,4 @@ export const VALIDATION_MESSAGES = {
 
 export const AUTO_RETURN_DELAY = 10000 // 10 seconds
 
-export const PATIENT_WEB_URL = process.env.NEXT_PUBLIC_PATIENT_WEB_URL || 'https://fountain-patient-web.netlify.app'
+export const PATIENT_WEB_URL = process.env.NEXT_PUBLIC_PATIENT_WEB_URL || 'https://exquisite-sunburst-b2a3ed.netlify.app'
