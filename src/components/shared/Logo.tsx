@@ -45,8 +45,8 @@ export function Logo({ variant = 'combined', className }: LogoProps) {
       <Image
         src="/fountain-combined.png"
         alt="Fountain Health Technologies"
-        width={350}
-        height={105}
+        width={280}
+        height={84}
         priority
         unoptimized
         className="select-none"

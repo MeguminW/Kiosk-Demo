@@ -21,10 +21,11 @@ export async function POST(request: NextRequest) {
 
     const { fullName, phoneNumber } = validated.data
 
-    // Mock queue assignment (in production, this would interact with a database)
-    const queueNumber = Math.floor(Math.random() * 20) + 1
-    const patientsAhead = queueNumber - 1
-    const estimatedWait = queueNumber * 10
+    // Mock queue assignment - standardized for demo
+    // User becomes #5 in queue after 4 people already waiting
+    const queueNumber = 5
+    const patientsAhead = 4
+    const estimatedWait = 45 // 45 minutes wait
 
     // Send SMS in background (don't await to avoid blocking response)
     const firstName = fullName.split(' ')[0]

@@ -40,13 +40,13 @@ export default function CheckInPage() {
 
   return (
     <main className="flex min-h-screen flex-col bg-white">
-      {/* Header Area */}
-      <div className="flex items-center justify-between px-8 py-6 border-b border-neutral-200">
+      {/* Header Area - Compact */}
+      <div className="flex items-center justify-between px-10 py-5 border-b border-neutral-200">
         {/* Back Button */}
         <Button
           variant="ghost"
           onClick={handleBack}
-          className="text-xl h-12 px-4 hover:bg-neutral-100 -ml-4"
+          className="text-xl h-11 px-3 hover:bg-neutral-100"
         >
           ← Back
         </Button>
@@ -57,13 +57,13 @@ export default function CheckInPage() {
         </div>
 
         {/* Spacer for alignment */}
-        <div className="w-24"></div>
+        <div className="w-20"></div>
       </div>
 
-      {/* Form Container - Centered */}
-      <div className="flex-1 flex items-center justify-center px-8 py-12">
-        <Card className="w-full max-w-2xl p-10 sm:p-12 shadow-xl rounded-3xl border border-neutral-200">
-          <h2 className="text-3xl sm:text-4xl font-semibold mb-8 text-center">Enter Your Information</h2>
+      {/* Form Container - Better centered for iPad */}
+      <div className="flex-1 flex items-center justify-center px-10 py-10">
+        <Card className="w-full max-w-3xl p-14 shadow-xl rounded-3xl border border-neutral-200">
+          <h2 className="text-4xl font-semibold mb-10 text-center">Enter Your Information</h2>
           <CheckInForm onSubmit={handleSubmit} />
         </Card>
       </div>

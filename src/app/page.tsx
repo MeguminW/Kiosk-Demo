@@ -14,7 +14,7 @@ export default function WelcomePage() {
     waitTime: 35,
     queueLength: 4,
   })
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   // Fetch queue status on mount
   useEffect(() => {
@@ -49,26 +49,26 @@ export default function WelcomePage() {
 
   return (
     <main className="flex min-h-screen flex-col bg-white">
-      {/* Main Content - Centered with proper spacing */}
-      <div className="flex-1 flex flex-col items-center justify-center px-8 sm:px-12 py-12">
-        {/* Logo - Top spacing */}
-        <div className="mb-8">
+      {/* Main Content - Optimized for iPad portrait */}
+      <div className="flex-1 flex flex-col items-center justify-center px-12 py-16">
+        {/* Logo */}
+        <div className="mb-12">
           <Logo variant="combined" />
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-center max-w-4xl leading-tight mb-4">
+        <h1 className="text-5xl font-semibold tracking-tight text-center max-w-4xl leading-tight mb-3">
           Welcome to {CLINIC_INFO.name}
         </h1>
 
         {/* Subheadline */}
-        <p className="text-xl sm:text-2xl text-neutral-500 text-center mb-12">
+        <p className="text-2xl text-neutral-500 text-center mb-14">
           Check in to join the queue
         </p>
 
         {/* Wait Time Card */}
         {!isLoading && (
-          <div className="mb-10">
+          <div className="mb-12">
             <WaitTimeIndicator
               waitMinutes={queueStatus.waitTime}
               queueLength={queueStatus.queueLength}
@@ -81,7 +81,7 @@ export default function WelcomePage() {
         <Button
           size="lg"
           onClick={handleCheckIn}
-          className="h-20 px-20 text-2xl font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all"
+          className="h-20 px-24 text-2xl font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all"
         >
           Check In
         </Button>

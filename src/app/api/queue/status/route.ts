@@ -5,10 +5,10 @@ import { NextResponse } from 'next/server'
  * Returns current queue status
  */
 export async function GET() {
-  // Mock data - in production, this would fetch from a database
+  // Mock data - standardized for demo
   const mockData = {
-    currentWaitTime: Math.floor(Math.random() * 30) + 20, // 20-50 min
-    queueLength: Math.floor(Math.random() * 10) + 1,      // 1-10 patients
+    currentWaitTime: 35, // 35 minutes
+    queueLength: 4,      // 4 patients ahead
     clinicStatus: 'open' as const,
   }
 
